@@ -3,11 +3,17 @@ package lab4;
 import java.io.File;
 import java.util.Scanner;
 
-public class search {
+public class Search {
 
 	public static void main(String[] args) {
 		
-		int idx = 0;
+		// If incorrect search argument
+		if (args.length == 0 || !args[0].equals("search")) {
+			System.out.println("Use the file searcher with: search -options <pattern> <file>");
+			return;
+		}
+		
+		int idx = 1;
 		
 		boolean caseInsensitive = false;
 		boolean invertedMatch = false;
@@ -27,7 +33,7 @@ public class search {
 
 		// If missing arguments
 		if (args.length - idx != 2) {
-			System.out.println("Use the file searcher with: -options <pattern> <file>");
+			System.out.println("Use the file searcher with: search -options <pattern> <file>");
 			return;
 		}
 
@@ -48,7 +54,7 @@ public class search {
 				boolean lineContainsWord = false;
 
 				// Split the line into array of words
-				String[] words = line.split("[,\\s\\.\\;\\:\\!\\?\\'\\\"]");
+				String[] words = line.split("[,\\s\\.\\;\\:\\!\\?\\'\\(\\)\\\"]");
 
 				// Iterate all words of the line
 				for (String word : words) {
